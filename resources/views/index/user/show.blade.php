@@ -11,7 +11,7 @@
                 <div class="panel-body">
                     <div class="media">
                         <div align="center">
-                            <img class="thumbnail img-responsive" src="https://iocaffcdn.phphub.org/uploads/images/201709/20/1/PtDKbASVcz.png?imageView2/1/w/600/h/600" width="300px" height="300px">
+                            <img class="thumbnail img-responsive" src="{{$user->avatar ? $user->avatar : '/avatar/aratar_1044.jpg'}}" width="300px" height="300px">
                         </div>
                         <div class="media-body">
                             <hr>
