@@ -92,9 +92,11 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Topic $topic)
     {
-        //
+        $this->authorize('update', $topic);
+        $categories=Category::all();
+        return view('index.topic.create', compact('topic', 'categories'));
     }
 
     /**
@@ -104,9 +106,11 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TopicRequest $request, Topic $topic)
     {
-        //
+        $this->authorize('update', $topic);
+        $topic->update($request->all());
+        return redirect()->route('topics.show', $topic->id)->with('message', '帖子修改成功');
     }
 
     /**
