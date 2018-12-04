@@ -32,5 +32,8 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::resource('users', 'Index\UsersController', ['only' => ['show', 'update', 'edit']]);
 
 Route::resource('topics', 'Index\TopicController');
+Route::post('upload_image', 'Index\TopicController@uploadImage')->name('topics.upload_image');
 
 Route::resource('categories', 'Index\CategoryController', ['only' => ['show']]);
+
+
