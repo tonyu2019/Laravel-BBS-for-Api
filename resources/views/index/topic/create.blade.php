@@ -1,5 +1,8 @@
 @extends('index.layouts.app')
-@section('title', isset($category) ? $category->name : '帖子首页')
+@section('title', $topic->id ? '编辑话题' : '创建话题')
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+    @endsection
 @section('body')
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
@@ -52,4 +55,18 @@
         </div>
     </div>
     </div>
+    @endsection
+@section('scripts')
+    <script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            var editor = new Simditor({
+                textarea: $('#editor'),
+            });
+        });
+    </script>
     @endsection
