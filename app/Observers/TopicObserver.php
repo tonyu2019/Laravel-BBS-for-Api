@@ -14,7 +14,8 @@ use App\Models\Topic;
 class TopicObserver
 {
     public function saving(Topic $topic){
-        $topic->except = make_excerpt($topic->body);
+        $topic->body    = clean($topic->body, 'user_topic_body');
+        $topic->except  = make_excerpt($topic->body);
     }
 
 }
