@@ -1,8 +1,13 @@
 @extends('index.layouts.app')
-@section('title', '帖子首页')
+@section('title', isset($category) ? $category->name : '帖子首页')
 @section('body')
     <div class="row">
         <div class="col-lg-9 col-md-9 topic-list">
+            @if (isset($category))
+                <div class="alert alert-info" role="alert">
+                    {{ $category->name }} ：{{ $category->description }}
+                </div>
+            @endif
             <div class="panel panel-default">
 
                 <div class="panel-heading">

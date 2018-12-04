@@ -5,3 +5,8 @@ function route_class()
 {
     return str_replace('.', '-', Route::currentRouteName());
 }
+
+//高亮导航;$link:当前导航链接
+function active_menu($link, $class='active'){
+    return substr_count(url()->full(), $link) ? 'active' : false;
+}
