@@ -15,4 +15,13 @@ class Topic extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeWithOrder($query, $order){
+        if ($order=='reply'){
+            $query->orderBy('updated_at', 'desc');
+        }else{
+            $query->orderBy('created_at', 'desc');
+        }
+        return $query->with('user', 'category');
+    }
 }

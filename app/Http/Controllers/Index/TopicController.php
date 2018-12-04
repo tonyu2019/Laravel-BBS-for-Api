@@ -13,9 +13,9 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $topics=Topic::with('user', 'category')->paginate(10);
+        $topics=Topic::withOrder($request->order)->paginate(10);
         return view('index.topic.index', compact('topics'));
     }
 

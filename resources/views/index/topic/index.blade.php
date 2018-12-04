@@ -12,8 +12,8 @@
 
                 <div class="panel-heading">
                     <ul class="nav nav-pills">
-                        <li role="presentation" class="active"><a href="#">最后回复</a></li>
-                        <li role="presentation"><a href="#">最新发布</a></li>
+                        <li role="presentation" class="{{active_menu(url()->current().'?order=reply')}}"><a href="{{url()->current()}}?order=reply">最后回复</a></li>
+                        <li role="presentation" class="{{!active_menu(url()->current().'?order=reply') ? 'active' : ''}}"><a href="{{url()->current()}}?order=default">最新发布</a></li>
                     </ul>
                 </div>
 
@@ -21,7 +21,7 @@
                     {{-- 话题列表 --}}
                     @include('index.topic._topic_list', ['topics' => $topics])
                     {{-- 分页 --}}
-
+                    {!! $topics->appends(Request::except('page'))->render() !!}
                 </div>
             </div>
         </div>
