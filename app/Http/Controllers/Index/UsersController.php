@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Index;
 
 use App\Handlers\ImgUploadHandle;
 use App\Http\Requests\UserRequest;
+use App\Models\Topic;
 use App\Models\User;
 
 class UsersController extends BaseController
