@@ -10,3 +10,10 @@ function route_class()
 function active_menu($link, $class='active'){
     return substr_count(url()->full(), $link) ? 'active' : false;
 }
+
+//截取字符串
+function make_excerpt($value, $length = 200)
+{
+    $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
+    return mb_substr($excerpt, 0, $length);
+}

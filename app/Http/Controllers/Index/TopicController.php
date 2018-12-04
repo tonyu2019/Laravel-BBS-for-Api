@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\Index;
 
+use App\Http\Requests\TopicRequest;
+use App\Models\Category;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['show', 'index']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +32,10 @@ class TopicController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Topic $topic)
     {
-        //
+        $categories=Category::all();
+        return view('index.topic.create', compact('topic', 'categories'));
     }
 
     /**
@@ -35,9 +44,13 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TopicRequest $request, Topic $topic)
     {
-        //
+        $topic->fill($request->all());
+        $topic->user_id = Auth::id();
+        $topic->save();
+
+        return redirect()->route('topics.show', $topic->id)->with('message', '话题创建成功');
     }
 
     /**
