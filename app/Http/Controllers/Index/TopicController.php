@@ -51,7 +51,7 @@ class TopicController extends Controller
         $topic->user_id = Auth::id();
         $topic->save();
 
-        return redirect()->route('topics.show', $topic->id)->with('message', '话题创建成功');
+        return redirect()->to($topic->link())->with('message', '话题创建成功');
     }
 
     public function uploadImage(Request $request, ImgUploadHandle $uploader){
@@ -81,8 +81,12 @@ class TopicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Topic $topic)
+    public function show(Request $request, Topic $topic)
     {
+        // URL 矫正
+        if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
+            return redirect($topic->link(), 301);
+        }
         return view('index.topic.show', compact('topic'));
     }
 
@@ -110,7 +114,7 @@ class TopicController extends Controller
     {
         $this->authorize('update', $topic);
         $topic->update($request->all());
-        return redirect()->route('topics.show', $topic->id)->with('message', '帖子修改成功');
+        return redirect()->to($topic->link())->with('message', '帖子修改成功');
     }
 
     /**

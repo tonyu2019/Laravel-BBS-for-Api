@@ -24,4 +24,9 @@ class Topic extends Model
         }
         return $query->with('user', 'category');
     }
+
+    public function link($params = [])
+    {
+        return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    }
 }
