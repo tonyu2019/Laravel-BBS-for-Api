@@ -16,6 +16,10 @@ class Topic extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
+
     public function scopeWithOrder($query, $order){
         if ($order=='reply'){
             $query->orderBy('updated_at', 'desc');

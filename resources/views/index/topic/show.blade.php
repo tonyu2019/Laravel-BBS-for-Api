@@ -60,6 +60,13 @@
 
                 </div>
             </div>
+            {{-- 用户回复列表 --}}
+            <div class="panel panel-default topic-reply">
+                <div class="panel-body">
+                    @include('index.topic._reply_box', ['topic' => $topic])
+                    @include('index.topic._reply_list', ['replies' => $topic->replies()->with('user')->get()])
+                </div>
+            </div>
         </div>
     </div>
     @endsection

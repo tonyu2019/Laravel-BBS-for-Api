@@ -39,10 +39,14 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#">Ta 的话题</a></li>
-                        <li><a href="#">Ta 的回复</a></li>
+                        <li class="{{!active_menu(route('users.show', [$user->id, 'tab' => 'replies'])) ? 'active' : ''}}"><a href="{{route('users.show', $user->id)}}">Ta 的话题</a></li>
+                        <li class="{{active_menu(route('users.show', [$user->id, 'tab' => 'replies']))}}"><a href="{{ route('users.show', [$user->id, 'tab' => 'replies']) }}">Ta 的回复</a></li>
                     </ul>
-                    @include('index.user._topics', ['topics' => $user->topics()->paginate(10)])
+                    @if(request('tab'))
+                    @include('index.user._replies', ['replies' => $user->replies()->paginate(10)])
+                        @else
+                        @include('index.user._topics', ['topics' => $user->topics()->paginate(10)])
+                    @endif
                 </div>
             </div>
 
