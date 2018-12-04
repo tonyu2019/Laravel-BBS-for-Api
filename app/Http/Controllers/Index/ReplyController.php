@@ -20,4 +20,10 @@ class ReplyController extends Controller
         $reply->save();
         return back()->with('success', '回复成功');
     }
+
+    public function destory(Reply $reply){
+        $this->authorize('delete', $reply);
+        $reply->delete();
+        return back()->with('success', '删除回复成功');
+    }
 }
