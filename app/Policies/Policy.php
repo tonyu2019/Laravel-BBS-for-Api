@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy extends Policy
+class Policy
 {
     use HandlesAuthorization;
 
@@ -19,8 +19,9 @@ class UserPolicy extends Policy
         //
     }
 
-
-    public function update(User $currentUser, User $user){
-        return $currentUser->id === $user->id;
+    public function before(User $user, $ability){
+        if ($user->can('manage_contents')){
+            return true;
+        }
     }
 }
