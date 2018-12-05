@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'Index\IndexController@index')->name('index');
+Route::get('/', 'Index\TopicController@index')->name('index');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
