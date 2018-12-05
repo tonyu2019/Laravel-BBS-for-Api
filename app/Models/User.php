@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ActiveUserHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,8 @@ class User extends Authenticatable
         notify as protected laravelNotify;
     }
     use HasRoles;
+    //活跃用户
+    use ActiveUserHelper;
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！
