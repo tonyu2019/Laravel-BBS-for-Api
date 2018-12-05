@@ -67,7 +67,7 @@
                                         {{$topic->updated_at}}
                                     </td>
                                     <td>
-                                        <form action="{{route('admin.topics.destory', $topic->id)}}" method="post" style="display: inline;">{{csrf_field()}}{{method_field('DELETE')}}<button type="submit" class="btn btn-danger js-sweetalert"><i class="fa fa-trash-o"></i></button></form>
+                                        <form action="{{route('admin.topics.destroy', $topic->id)}}" method="post" style="display: inline;">{{csrf_field()}}{{method_field('DELETE')}}<button type="submit" class="btn btn-danger js-sweetalert"><i class="fa fa-trash-o"></i></button></form>
                                     </td>
                                 </tr>
                                     @endforeach

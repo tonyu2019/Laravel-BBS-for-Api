@@ -1,4 +1,4 @@
-@extends('admin.layout._base')
+@extends('admin.layouts.app')
 @section('title', '用户管理')
 @section('body')
     <div class="container-fluid">
@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="body">
-                        @include('index.layout._message')
+                        @include('layouts._message')
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">

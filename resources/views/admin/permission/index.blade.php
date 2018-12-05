@@ -1,4 +1,4 @@
-@extends('admin.layout._base')
+@extends('admin.layouts.app')
 @section('title', '权限管理')
 @section('body')
     <div class="container-fluid">
@@ -24,7 +24,7 @@
                         <h2>权限列表</h2>
                     </div>
                     <div class="body">
-                        @include('index.layout._message')
+                        @include('layouts._message')
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-responsive">
@@ -62,9 +62,9 @@
                                                     {{$permission->updated_at}}
                                                 </td>
                                                 <td>
-                                                    <a href="{{route('permissions.edit', $permission->id)}}" class="btn btn-info" title="Edit"><i
+                                                    <a href="{{route('admin.permissions.edit', $permission->id)}}" class="btn btn-info" title="Edit"><i
                                                                 class="fa fa-edit"></i></a>
-                                                    <form action="{{route('permissions.destroy', $permission->id)}}" method="post" style="display: inline;">{{csrf_field()}}{{method_field('DELETE')}}<button type="submit" class="btn btn-danger js-sweetalert"><i class="fa fa-trash-o"></i></button></form>
+                                                    <form action="{{route('admin.permissions.destroy', $permission->id)}}" method="post" style="display: inline;">{{csrf_field()}}{{method_field('DELETE')}}<button type="submit" class="btn btn-danger js-sweetalert"><i class="fa fa-trash-o"></i></button></form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -77,7 +77,7 @@
                         </div>
                         <div class="row" style="margin-top: 15px;">
                             <div class="col-sm-12 col-md-5">
-                                <div><a href="{{route('permissions.create')}}" class="btn btn-success">添加权限</a></div>
+                                <div><a href="{{route('admin.permissions.create')}}" class="btn btn-success">添加权限</a></div>
                             </div>
                             <div class="col-sm-12 col-md-7">
                                 <div class="pull-right">

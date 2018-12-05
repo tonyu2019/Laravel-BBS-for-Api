@@ -1,4 +1,4 @@
-@extends('admin.layout._base')
+@extends('admin.layouts.app')
 @section('title', isset($user) ? '修改用户' : '添加用户')
 @section('body')
     <div class="container-fluid">
@@ -24,7 +24,7 @@
                         <h2>@if(isset($user))修改用户@else添加用户@endif</h2>
                     </div>
                     <div class="body">
-                        @include('index.layout._error')
+                        @include('layouts._error')
                         @if(isset($user))
                             <form action="{{route('admin.users.update', $user->id)}}" method="post" novalidate>
                                 {{method_field('PUT')}}

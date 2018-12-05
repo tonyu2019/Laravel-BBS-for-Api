@@ -1,4 +1,4 @@
-@extends('admin.layout._base')
+@extends('admin.layouts.app')
 @section('title', isset($permission) ? '修改权限' : '添加权限')
 @section('body')
     <div class="container-fluid">
@@ -25,10 +25,10 @@
                     </div>
                     <div class="body">
                         @if(isset($permission))
-                            <form action="{{route('permissions.update', $permission->id)}}" method="post" novalidate>
+                            <form action="{{route('admin.permissions.update', $permission->id)}}" method="post" novalidate>
                                 {{method_field('PUT')}}
                             @else
-                            <form action="{{route('permissions.store')}}" method="post" novalidate>
+                            <form action="{{route('admin.permissions.store')}}" method="post" novalidate>
                             @endif
                             {{csrf_field()}}
                             <div class="form-group">

@@ -63,60 +63,25 @@
                                         <span class="notification-dot"></span>
                                     </a>
                                     <ul class="dropdown-menu animated bounceIn notifications">
-                                        <li class="header"><strong>You have 4 new Notifications</strong></li>
+                                        <li class="header"><strong>最近5条通知</strong></li>
+                                        @foreach(Auth::user()->notifications()->paginate(5) as $notification)
                                         <li>
                                             <a href="javascript:void(0);">
                                                 <div class="media">
                                                     <div class="media-left">
-                                                        <i class="icon-info text-warning"></i>
+                                                        <i class="icon-info text-primary"></i>
                                                     </div>
                                                     <div class="media-body">
-                                                        <p class="text">Campaign <strong>Holiday Sale</strong> is nearly reach budget limit.</p>
-                                                        <span class="timestamp">10:00 AM Today</span>
+                                                        <p class="text">
+                                                            <strong>{{ $notification->data['user_name'] }}</strong> 评论了 {{ $notification->data['topic_title'] }}
+                                                        </p>
+                                                        <span class="timestamp">{{ $notification->created_at->diffForHumans() }}</span>
                                                     </div>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <i class="icon-like text-success"></i>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <p class="text">Your New Campaign <strong>Holiday Sale</strong> is approved.</p>
-                                                        <span class="timestamp">11:30 AM Today</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <i class="icon-pie-chart text-info"></i>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <p class="text">Website visits from Twitter is 27% higher than last week.</p>
-                                                        <span class="timestamp">04:00 PM Today</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <i class="icon-info text-danger"></i>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <p class="text">Error on website analytics configurations</p>
-                                                        <span class="timestamp">Yesterday</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="footer"><a href="javascript:void(0);" class="more">See all notifications</a></li>
+                                        @endforeach
+                                        <li class="footer"><a href="javascript:void(0);" class="more">查看全部通知</a></li>
                                     </ul>
                                 </li>
 

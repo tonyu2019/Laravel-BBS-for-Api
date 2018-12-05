@@ -1,4 +1,4 @@
-@extends('admin.layout._base')
+@extends('admin.layouts.app')
 @section('title', '回复管理')
 @section('body')
     <div class="container-fluid">
@@ -24,7 +24,7 @@
                         <h2>回复列表</h2>
                     </div>
                     <div class="body">
-                        @include('index.layout._message')
+                        @include('layouts._message')
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered m-b-0 c_list">
                                 <thead>
@@ -59,7 +59,7 @@
                                         {{mb_substr($reply->content,0, 50)}}
                                     </td>
                                     <td>
-                                        {{$reply->post->title}}
+                                        {{$reply->topic->title}}
                                     </td>
                                     <td>
                                         {{$reply->updated_at}}

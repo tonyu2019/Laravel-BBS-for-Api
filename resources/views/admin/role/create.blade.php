@@ -1,4 +1,4 @@
-@extends('admin.layout._base')
+@extends('admin.layouts.app')
 @section('title', isset($role) ? '修改角色' : '添加角色')
 @section('body')
     <div class="container-fluid">
@@ -25,10 +25,10 @@
                     </div>
                     <div class="body">
                         @if(isset($role))
-                            <form action="{{route('roles.update', $role->id)}}" method="post" novalidate>
+                            <form action="{{route('admin.roles.update', $role->id)}}" method="post" novalidate>
                                 {{method_field('PUT')}}
                             @else
-                            <form action="{{route('roles.store')}}" method="post" novalidate>
+                            <form action="{{route('admin.roles.store')}}" method="post" novalidate>
                             @endif
                             {{csrf_field()}}
                             <div class="form-group">
