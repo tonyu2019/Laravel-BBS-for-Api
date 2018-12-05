@@ -25,8 +25,12 @@ class UsersTableSeeder extends Seeder
             'intro'=>'山中无老虎，猴子称大王……',
             'password'=>bcrypt('admin888')
         ];
-        \App\Models\User::create($tony);
-        \App\Models\User::create($hou);
+        $user = \App\Models\User::create($tony);
+        // 初始化用户角色，将 1 号用户指派为『站长』
+        $user->assignRole('Founder');
+
+        $user = \App\Models\User::create($hou);
+        $user->assignRole('Maintainer');
         factory(\App\Models\User::class)->times(10)->create();
 
         /*// 初始化用户角色，将 1 号用户指派为『站长』
