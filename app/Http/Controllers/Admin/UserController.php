@@ -10,20 +10,23 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends BaseController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('manageUsers');
+    }
+
     public function index(){
-//        $this->authorize('user_index');
         $users=User::with('roles')->paginate(10);
         return view('admin.user.index', compact('users'));
     }
 
     public function create(){
-//        $this->authorize('user_add');
         $roles=Role::orderBy('id', 'desc')->get();
         return view('admin.user.create_edit', compact('roles'));
     }
 
     public function store(Request $request, User $user){
-//        $this->authorize('user_add');
         $this->validate($request, [
             'email' => 'required|unique:users'
         ],[
@@ -47,13 +50,11 @@ class UserController extends BaseController
     }
 
     public function edit(User $user){
-//        $this->authorize('user_edit');
         $roles=Role::orderBy('id', 'desc')->get();
         return view('admin.user.create_edit', compact('roles', 'user'));
     }
 
     public function update(User $user, Request $request){
-//        $this->authorize('user_edit');
         $user->name=$request->name;
         $user->email    = $request->email;
         $user->password      = $request->password;
@@ -70,7 +71,7 @@ class UserController extends BaseController
     }
 
     public function destroy(User $user){
-//        $this->authorize('user_del');
+        $this->authorize('del_users');
         if ($user->delete()){
             return back()->with('success','删除用户成功');
 

@@ -127,8 +127,8 @@
                     <li><a href="{{route('admin.replies.index')}}"><i class="icon-speech"></i><span>回复</span></a></li>
                     <li class="heading">用户</li>
                     <li><a href="{{route('admin.users.index')}}"><i class="icon-users"></i><span>用户</span></a></li>
-                    <li><a href="{{route('admin.roles.index')}}"><i class="icon-magic-wand"></i><span>角色</span></a></li>
-                    <li><a href="{{route('admin.permissions.index')}}"><i class="icon-lock"></i><span>权限</span></a></li>
+                    @can('manage_roles')<li><a href="{{route('admin.roles.index')}}"><i class="icon-magic-wand"></i><span>角色</span></a></li>@endcan
+                    @can('manage_permissions')<li><a href="{{route('admin.permissions.index')}}"><i class="icon-lock"></i><span>权限</span></a></li>@endcan
                     <li class="heading">系统</li>
                     <li><a href="#"><i class="icon-settings"></i><span>设置</span></a></li>
                 </ul>
