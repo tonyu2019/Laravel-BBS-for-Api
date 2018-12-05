@@ -16,6 +16,8 @@ class User extends Authenticatable
     use HasRoles;
     //活跃用户
     use ActiveUserHelper;
+    //最后活跃时间
+    use Traits\LastActivedAtHelper;
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！
