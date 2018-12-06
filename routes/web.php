@@ -71,3 +71,17 @@ Route::put('admin/permissions/{permission}', 'Admin\PermissionController@update'
 Route::delete('admin/permissions/{permission}', 'Admin\PermissionController@destroy')->name('admin.permissions.destroy');
 
 
+Route::get('test', function (){
+    $sms = app('easysms');
+    //dd($sms);
+    try {
+        $sms->send(15001963096, [
+            'content'  => '【于海洋test】您的验证码是1234。如非本人操作，请忽略本短信',
+        ]);
+        dd('陈宫了');
+    } catch (\Overtrue\EasySms\Exceptions\NoGatewayAvailableException $exception) {
+        $message = $exception->getException('yunpian')->getMessage();
+        dd($message);
+    }
+});
+
