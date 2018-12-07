@@ -7,8 +7,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable {
         notify as protected laravelNotify;
@@ -18,6 +19,17 @@ class User extends Authenticatable
     use ActiveUserHelper;
     //最后活跃时间
     use Traits\LastActivedAtHelper;
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！
