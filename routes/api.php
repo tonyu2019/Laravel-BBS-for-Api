@@ -55,6 +55,12 @@ $api->version('v1', [
             // 当前登录用户信息
             $api->get('user', 'UserController@me')
                 ->name('api.user.show');
+            // 图片资源
+            $api->post('images', 'ImageController@store')
+                ->name('api.images.store');
+            // 编辑登录用户信息
+            $api->patch('user', 'UserController@update')
+                ->name('api.user.update');
         });
     });
 

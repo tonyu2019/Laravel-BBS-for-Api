@@ -14,7 +14,7 @@ class UserTransformer extends TransformerAbstract
             'name' => $user->name,
             'email' => $user->email,
             'avatar' => $user->avatar,
-            'introduction' => $user->introduction,
+            'intro' => $user->intro,
             'bound_phone' => $user->phone ? true : false,
             'bound_wechat' => ($user->weixin_unionid || $user->weixin_openid) ? true : false,
             'last_actived_at' => $user->last_actived_at->toDateTimeString(),
