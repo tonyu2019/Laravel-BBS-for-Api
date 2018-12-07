@@ -70,6 +70,8 @@ $api->version('v1', [
             //修改话题
             $api->patch('topics/{topic}', 'TopicController@update')
                 ->name('api.topics.update');
+            $api->delete('topics/{topic}', 'TopicController@destroy')
+                ->name('api.topics.destroy');
         });
     });
 

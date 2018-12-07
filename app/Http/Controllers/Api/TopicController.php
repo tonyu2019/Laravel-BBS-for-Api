@@ -26,4 +26,10 @@ class TopicController extends BaseController
         $topic->update($request->all());
         return $this->response->item($topic, new TopicTransformer());
     }
+
+    public function destroy(Topic $topic){
+        $this->authorize('delete', $topic);
+        $topic->delete();
+        return $this->response->noContent();
+    }
 }
