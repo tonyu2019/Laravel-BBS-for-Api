@@ -22,7 +22,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array'
+    'middleware' => ['serializer:array', 'bindings']
 ], function($api) {
     //防止短信轰炸，1分钟限制一次获取验证码
     $api->group([
@@ -67,6 +67,9 @@ $api->version('v1', [
             // 发布话题
             $api->post('topics', 'TopicController@store')
                 ->name('api.topics.store');
+            //修改话题
+            $api->patch('topics/{topic}', 'TopicController@update')
+                ->name('api.topics.update');
         });
     });
 
