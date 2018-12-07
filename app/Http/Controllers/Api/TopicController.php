@@ -7,9 +7,15 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Api\TopicRequest;
 use App\Models\Topic;
 use App\Transformers\TopicTransformer;
+use Illuminate\Http\Request;
 
 class TopicController extends BaseController
 {
+    public function index(Request $request, Topic $topic)
+    {
+        $topics=Topic::withOrder($request->order)->paginate(10);
+        return $this->response->paginator($topics, new TopicTransformer());
+    }
     public function store(TopicRequest $request, Topic $topic)
     {
         $topic->fill($request->all());
