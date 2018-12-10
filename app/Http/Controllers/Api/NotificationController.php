@@ -17,4 +17,9 @@ class NotificationController extends BaseController
             'unread_count' => $this->user()->notification_count,
         ]);
     }
+
+    public function read(){
+        $this->user()->markAsRead();
+        return $this->response->noContent();
+    }
 }
