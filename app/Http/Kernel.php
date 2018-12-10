@@ -65,5 +65,7 @@ class Kernel extends HttpKernel
         'manageUsers' => \App\Http\Middleware\ManageUsers::class,
         'manageRoles' => \App\Http\Middleware\ManageRoles::class,
         'managePermissions' => \App\Http\Middleware\ManagePermissions::class,
+        // 接口语言设置
+        'change-locale' => \App\Http\Middleware\ChangeLocale::class,
     ];
 }
