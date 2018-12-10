@@ -19,4 +19,17 @@ class ReplyController extends BaseController
         return $this->response->item($reply, new ReplyTransformer())
             ->setStatusCode(201);
     }
+
+    //删除回复
+    public function destroy(Topic $topic, Reply $reply){
+//        dd($topic, $reply);
+        //判断当前删除回复对应的话题id是否等于链接中的话题id
+        if ($reply->topic_id != $topic->id) {
+            return $this->response->errorBadRequest();
+        }
+        $this->authorize('delete', $reply);
+        $reply->delete();
+
+        return $this->response->noContent();
+    }
 }
