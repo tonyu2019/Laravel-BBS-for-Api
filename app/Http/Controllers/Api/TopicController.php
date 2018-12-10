@@ -45,4 +45,10 @@ class TopicController extends BaseController
         $topic->delete();
         return $this->response->noContent();
     }
+
+
+    //帖子详情
+    public function show(Topic $topic){
+        return $this->response->item($topic, new TopicTransformer());
+    }
 }
