@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\TopicRequest;
 use App\Models\Topic;
+use App\Models\User;
 use App\Transformers\TopicTransformer;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,12 @@ class TopicController extends BaseController
 
         return $this->response->item($topic, new TopicTransformer())
             ->setStatusCode(201);
+    }
+
+    //用户发表的话题列表
+    public function userIndex(User $user){
+        $topics = $user->topics()->paginate(8);
+        return $this->response->paginator($topics, new TopicTransformer());
     }
 
     public function update(TopicRequest $request, Topic $topic){
